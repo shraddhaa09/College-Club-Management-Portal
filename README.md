@@ -1,40 +1,41 @@
-# Club Management Portal
+# College Club Management Portal
 
-Overview
-This is the frontend for the Club Management Portal—a React SPA that talks to a PHP/MySQL backend. It provides the admin dashboard, member/workshop/event management views, and analytics visualizations.
+## Overview
+Full-stack web application to manage college clubs, members, events, notices, and workshops.
+- **Frontend:** React + Tailwind
+- **Backend:** PHP + MySQL
+- **Auth:** JWT
+- **Deployment:** Local / XAMPP
 
-Quick start
-1. Install dependencies:
+## Features
+- Club registration & login
+- Admin dashboard with stats
+- Member approval workflow
+- Event & workshop management
+- Notice board
+- Reports & exports
 
+## Project Structure
+
+### Frontend
+- `frontend/src/`: React components, pages, API helpers
+- `frontend/public/`: static HTML and icons
+- `frontend/src/api/`: helper functions calling backend endpoints
+
+### Backend
+- `backend/api/`: REST API endpoints
+- `backend/config/`: database configuration
+- `backend/utils/`: auth & token helpers
+- `backend/uploads/`: file uploads (ignored in Git)
+
+### Database
+- `database/create_tables.sql`: schema & initial tables
+
+## Quick Start
+
+### Frontend
 ```bash
 cd frontend
 npm install
-```
-
-2. Start development server:
-
-```bash
-npm start
-```
-
-3. Build for production:
-
-```bash
-npm run build
-```
-
-Project structure (important paths)
-- `public/`: static HTML and icons
-- `src/`: React source files (components, pages, API helpers)
-- `src/api/`: helper functions that call backend PHP endpoints
-
-Backend
-The frontend expects the backend API in the sibling `backend/api` folder. Ensure the backend server (PHP + MySQL) is running and `api/api_init.php` is reachable.
-
-Notes
-- Environment variables: use a `.env` file in `frontend/` when needed (this repo ignores `.env`).
-- Tests: run `npm test` if present.
-
-Maintainers
-- Keep frontend API paths in `src/api` in sync with `backend/api` endpoints.
-
+npm start       # runs dev server
+npm run build   # production build
