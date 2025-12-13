@@ -1,0 +1,206 @@
+/* Page background */
+.lp-root {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #4c3cf7, #a14cf5);
+  color: #ffffff;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* Header with logo */
+.lp-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1.5rem 3rem;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.lp-logo-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lp-logo-text {
+  letter-spacing: 0.03em;
+}
+
+/* Main content */
+.lp-main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+  text-align: center;
+}
+
+.lp-hero-text h1 {
+  font-size: 1.9rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+}
+
+.lp-hero-text p {
+  font-size: 0.98rem;
+  max-width: 640px;
+  margin: 0 auto 2.2rem;
+  opacity: 0.9;
+}
+
+/* Cards */
+.lp-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-bottom: 1.8rem;
+}
+
+.lp-card {
+  background: #ffffff;
+  color: #111827;
+  width: 320px;
+  border-radius: 18px;
+  padding: 1.8rem 1.5rem 1.4rem;
+  box-shadow: 0 24px 45px rgba(15, 23, 42, 0.25);
+}
+
+.lp-card-icon {
+  width: 54px;
+  height: 54px;
+  border-radius: 18px;
+  background: #eef2ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  margin: 0 auto 1rem;
+}
+
+.lp-card h2 {
+  font-size: 1.25rem;
+  margin-bottom: 0.4rem;
+}
+
+.lp-card p {
+  font-size: 0.9rem;
+  color: #4b5563;
+  margin-bottom: 1.2rem;
+}
+
+/* Buttons */
+.lp-btn {
+  display: block;
+  width: 100%;
+  padding: 0.65rem 1rem;
+  border-radius: 999px;
+  border: none;
+  outline: none;
+  font-size: 0.92rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+}
+
+.lp-btn-primary {
+  background: #4f46e5;
+  color: #ffffff;
+  margin-bottom: 0.6rem;
+}
+
+.lp-btn-primary:hover {
+  background: #4338ca;
+}
+
+.lp-btn-secondary {
+  background: #f9fafb;
+  color: #111827;
+  border: 1px solid #e5e7eb;
+}
+
+.lp-btn-secondary:hover {
+  background: #e5e7eb;
+}
+
+/* Footer text */
+.lp-footer-text {
+  font-size: 0.85rem;
+  opacity: 0.9;
+}
+
+/* Simple shared auth layout for login/register pages */
+.auth-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #4c3cf7, #a14cf5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.auth-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 2rem 2.2rem;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 24px 45px rgba(15, 23, 42, 0.25);
+}
+
+.auth-card h2 {
+  margin-bottom: 1.2rem;
+  text-align: center;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.auth-form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9rem;
+  color: #111827;
+}
+
+.auth-form input {
+  margin-top: 0.25rem;
+  padding: 0.5rem 0.6rem;
+  border-radius: 0.5rem;
+  border: 1px solid #d1d5db;
+  font-size: 0.9rem;
+}
+
+.auth-btn {
+  margin-top: 0.8rem;
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  border: none;
+  background: #4f46e5;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.auth-btn:hover {
+  background: #4338ca;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .lp-hero-text h1 {
+    font-size: 1.5rem;
+  }
+
+  .lp-card {
+    width: 100%;
+  }
+}
