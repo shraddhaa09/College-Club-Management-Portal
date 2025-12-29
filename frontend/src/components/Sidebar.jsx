@@ -20,7 +20,7 @@ const menu = [
   { path: "/settings", name: "Settings", icon: <FaCog /> }
 ];
 
-export default function Sidebar({ setAuth, auth }) {
+export default function Sidebar({ setAuth, auth, club }) {
   const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(false);
   const [hovered, setHovered] = useState(false);
@@ -37,7 +37,7 @@ export default function Sidebar({ setAuth, auth }) {
       {/* Mobile toggle button */}
       <button
         className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-purple-600 text-white rounded-md"
-        onClick={() => setCollapsed(false)}
+        onClick={() => setCollapsed(!collapsed)}
       >
         <FaBars size={20} />
       </button>
@@ -64,7 +64,11 @@ export default function Sidebar({ setAuth, auth }) {
 
         <div className="overflow-y-auto mt-12">
           <div className={`text-white font-bold text-lg px-8 pb-8 transition-opacity ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
-            Welcome back, {auth?.club?.name || "Admin"}
+            {(() => {
+              const clubObj = club ?? (auth?.club ?? auth);
+              const displayName = clubObj?.name ?? clubObj?.club?.name ?? "Admin";
+              return `Welcome back, ${displayName}`;
+            })()}
           </div>
 
           <nav className="flex-1 space-y-1">

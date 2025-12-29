@@ -94,14 +94,8 @@ $stmt = $pdo->prepare("
 $stmt->execute([$id]);
 $photoRow = $stmt->fetch(PDO::FETCH_ASSOC);
 
+// Return a consistent, flat photo object (matches getMemories.php format)
 echo json_encode([
     'status' => 'success',
-    'photo' => [
-        'id' => $id,
-        'photo'  => $photoRow,
-        'club_id' => $club_id,
-        'event_id' => $event_id,
-        'file_path' => $pathForDb,
-        'caption' => $caption,
-    ]
+    'photo' => $photoRow
 ]);

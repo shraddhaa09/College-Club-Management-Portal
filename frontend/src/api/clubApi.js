@@ -328,7 +328,9 @@ export async function uploadMemory({ file, caption, event_id }) {
 
   const data = await res.json();
   if (data.status !== "success") throw new Error(data.message || "Failed to upload memory");
-  return data.photo;
+  // Backend historically sometimes returned { photo: { photo: { ... } } }
+  // Normalize to the inner photo object when present.
+  return data.photo?.photo ?? data.photo;
 }
 
 export async function getMemories() {

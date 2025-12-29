@@ -28,6 +28,7 @@ import {
   Pie,
   Cell,
 } from "recharts";
+import { set } from "date-fns";
 
 const departmentColors = ["#3b82f6", "#8b5cf6", "#06b6d4", "#a855f7", "#ec4899"];
 
@@ -37,6 +38,7 @@ const departmentColors = ["#3b82f6", "#8b5cf6", "#06b6d4", "#a855f7", "#ec4899"]
 function MemoryUploader({ onUploaded }) {
   const [file, setFile] = useState(null);
   const [caption, setCaption] = useState("");
+  const [uploaded_at, setUploaded_at] = useState("");
   const [uploading, setUploading] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -44,10 +46,12 @@ function MemoryUploader({ onUploaded }) {
     if (!file) return;
     try {
       setUploading(true);
-      const photo = await uploadMemory({ file, caption });
+      const photo = await uploadMemory({ file, caption, uploaded_at: new Date() });
       onUploaded(photo);
       setFile(null);
       setCaption("");
+      setUploaded_at
+      (new Date());
     } catch (err) {
       alert(err.message || "Failed to upload photo");
     } finally {
@@ -91,6 +95,7 @@ export default function Dashboard({ club, setAuth }) {
   const [error, setError] = useState("");
   const [memories, setMemories] = useState([]);
   const [memoryIndex, setMemoryIndex] = useState(0);
+  var currentDate;
 
   // Fetch dashboard data (including memories)
   useEffect(() => {
@@ -308,10 +313,11 @@ export default function Dashboard({ club, setAuth }) {
         {/* Main Image + Navigation */}
         <div className="w-full md:w-2/3 relative">
           <div className="relative rounded-xl overflow-hidden shadow group">
+           
             <img
               key={memoryIndex} 
-              src={`http://localhost/cllgclub/backend/${memories[memoryIndex].file_path}`}
-              alt={memories[memoryIndex].caption || "Event memory"}
+               src={`http://localhost/cllgclub/backend/${memories[memoryIndex].file_path}`}
+               alt={memories[memoryIndex].caption || "Event memory"}
               className="w-full h-80 object-cover transition-opacity duration-500 opacity-100"
             />
 
@@ -342,7 +348,7 @@ export default function Dashboard({ club, setAuth }) {
         <div className="w-full md:w-1/3 max-h-80 overflow-y-auto space-y-2">
           {memories.map((photo, idx) => (
             <div
-              key={photo.id}
+            key={photo.id}
               className={`flex items-center gap-2 p-2 rounded cursor-pointer ${
                 idx === memoryIndex ? "bg-purple-100" : "hover:bg-gray-100"
               }`}
@@ -359,7 +365,9 @@ export default function Dashboard({ club, setAuth }) {
                   {photo.caption || "Event memory"}
                 </div>
                 <div className="text-xs text-gray-500">
-                  {new Date(photo.uploaded_at).toLocaleDateString()}
+                  {new Date(photo.uploaded_at).toLocaleDateString() }
+                  {/* {new Date(photo.uploaded_at || photo.photo.uploaded_at).toLocaleDateString()} */}
+                  
                 </div>
               </div>
 

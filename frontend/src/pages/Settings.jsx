@@ -13,7 +13,7 @@ import {
 } from "../components/settings-ui/Card";
 import { getSettings, updateSettings } from "../api/clubApi";
 
-export default function Settings() {
+export default function Settings({ club, auth, setAuth }) {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
@@ -110,7 +110,7 @@ export default function Settings() {
   if (loading) {
     return (
       <div className="flex min-h-screen bg-gray-50">
-        <Sidebar />
+        <Sidebar auth={auth} club={club} setAuth={setAuth} />
         <main className="flex-1 p-8">
           <div className="flex items-center justify-center py-12">
             <div className="text-center">
@@ -125,7 +125,7 @@ export default function Settings() {
 
   return (
     <div className="flex min-h-screen bg-gray-50">
-      <Sidebar />
+      <Sidebar auth={auth} club={club} setAuth={setAuth} />
       <main className="flex-1 p-8 ml-64">
         <div className="max-w-4xl mx-auto space-y-6">
           {/* Header */}

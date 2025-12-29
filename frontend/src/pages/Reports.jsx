@@ -14,28 +14,29 @@ import {
 } from "recharts";
 import Sidebar from "../components/Sidebar";
 
-const Reports = () => {
+const Reports = ({ club, auth, setAuth }) => {
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
   useEffect(() => {
     // Use the auth object and a universal helper!
-const auth = JSON.parse(localStorage.getItem("auth"));
-const token = auth?.token;
-if (!token) {
-  setError("Not logged in. Please login as club.");
-  setLoading(false);
-  return;
-}
+    const token = auth?.token || JSON.parse(localStorage.getItem("auth"))?.token;
 
-fetch("http://localhost/cllgclub/backend/api/getreports.php", {
-  headers: {
-    "Authorization": `Bearer ${token}`,
-    "Content-Type": "application/json",
-  },
-  credentials: "include",
-})
+    if (!token) {
+      setError("Not logged in. Please login as club.");
+      setLoading(false);
+
+      return;
+    }
+
+    fetch("http://localhost/cllgclub/backend/api/getreports.php", {
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    })
 
       .then((res) => res.json())
       .then((data) => {
@@ -50,14 +51,14 @@ fetch("http://localhost/cllgclub/backend/api/getreports.php", {
         setError("Network error: " + err.message);
         setLoading(false);
       });
-  }, []);
+  }, [auth]);
 
   if (loading) return <div className="p-8">Loading reports...</div>;
   if (error) return <div className="p-8 text-red-500">{error}</div>;
 
   return (
     <div className="flex min-h-screen">
-      <Sidebar />
+      <Sidebar auth={auth} club={club} setAuth={setAuth} />
 
       <main className="flex-1 p-8 space-y-6 animate-fade-in ml-64">
         {/* Header */}

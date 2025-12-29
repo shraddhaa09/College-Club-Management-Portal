@@ -50,91 +50,91 @@ export default function App() {
 
   return (
     !loading && (
-    <BrowserRouter>
-      <Routes>
-        {/* ---------------------- PUBLIC ROUTES ---------------------- */}
+      <BrowserRouter>
+        <Routes>
+          {/* ---------------------- PUBLIC ROUTES ---------------------- */}
 
-        {/* Main entry page */}
-        <Route path="/" element={<MainAuthPage setAuth={setAuth} />} />
+          {/* Main entry page */}
+          <Route path="/" element={<MainAuthPage setAuth={setAuth} />} />
 
-        {/* Login Routes */}
-        <Route
-          path="/club-login"
-          element={<ClubLoginForm setAuth={setAuth} />}
-        />
+          {/* Login Routes */}
+          <Route
+            path="/club-login"
+            element={<ClubLoginForm setAuth={setAuth} />}
+          />
 
-        {/* Registration Routes */}
-        <Route path="/club-register" element={<ClubRegisterForm />} />
+          {/* Registration Routes */}
+          <Route path="/club-register" element={<ClubRegisterForm />} />
 
-        {/* ---------------------- CLUB ROUTES ---------------------- */}
-        <Route
-          path="/dashboard"
-          element={
-            <ProtectedRoute allowed={["club"]}>
-              <Dashboard logout={() => setAuth(null)} club={auth} setAuth={setAuth} />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-  path="/events"
-  element={
-    <ProtectedRoute allowed={["club"]}>
-      <EventsPage club={auth} setAuth={setAuth} />
-    </ProtectedRoute>
-  }
-/>
-        <Route
-          path="/notices"
-          element={
-            <ProtectedRoute allowed={["club"]}>
-              <NoticesPage club={auth} />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/members"
-          element={
-            <ProtectedRoute allowed={["club"]}>
-              <MembersPage club={auth} />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/profile"
-          element={
-            <ProtectedRoute allowed={["club"]}>
-              <ClubProfilePage club={auth} logout={() => setAuth(null)} />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/workshops"
-          element={
-            <ProtectedRoute allowed={["club"]}>
-              <Workshops club={auth} />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/reports"
-          element={
-            <ProtectedRoute allowed={["club"]}>
-              <Reports club={auth} />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/settings"
-          element={
-            <ProtectedRoute allowed={["club"]}>
-              <Settings club={auth} />
-            </ProtectedRoute>
-          }
-        />
+          {/* ---------------------- CLUB ROUTES ---------------------- */}
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute allowed={["club"]}>
+                <Dashboard logout={() => setAuth(null)} club={auth?.club} auth={auth} setAuth={setAuth} />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/events"
+            element={
+              <ProtectedRoute allowed={["club"]}>
+                <EventsPage club={auth?.club} auth={auth} setAuth={setAuth} />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/notices"
+            element={
+              <ProtectedRoute allowed={["club"]}>
+                <NoticesPage club={auth?.club} auth={auth} setAuth={setAuth} />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/members"
+            element={
+              <ProtectedRoute allowed={["club"]}>
+                <MembersPage club={auth?.club} auth={auth} setAuth={setAuth} />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute allowed={["club"]}>
+                <ClubProfilePage club={auth?.club} auth={auth} logout={() => setAuth(null)} />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/workshops"
+            element={
+              <ProtectedRoute allowed={["club"]}>
+                <Workshops club={auth?.club} auth={auth} setAuth={setAuth} />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/reports"
+            element={
+              <ProtectedRoute allowed={["club"]}>
+                <Reports club={auth?.club} auth={auth} setAuth={setAuth} />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/settings"
+            element={
+              <ProtectedRoute allowed={["club"]}>
+                <Settings club={auth?.club} auth={auth} setAuth={setAuth} />
+              </ProtectedRoute>
+            }
+          />
 
-        {/* ---------------------- FALLBACK ROUTE ---------------------- */}
-<Route path="*" element={<Navigate to="/" />} />      </Routes>
-    </BrowserRouter>
+          {/* ---------------------- FALLBACK ROUTE ---------------------- */}
+          <Route path="*" element={<Navigate to="/" />} />      </Routes>
+      </BrowserRouter>
     )
   );
 }
